@@ -1,12 +1,12 @@
 stages {
 stage('clean') {
 steps {
-mvn clean #clean maven project
+mvn clean 
 }
 }
 stage('package') {
 steps {
-sudo mvn package #package maven project
+sudo mvn package 
 
 }
 }

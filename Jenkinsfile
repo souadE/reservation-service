@@ -1,18 +1,11 @@
-stages {
-stage('clean') {
-steps {
-mvn clean 
-}
-}
-stage('package') {
-steps {
-sudo mvn package 
+node {
+    checkout scm
 
-}
-}
-stage('create docker image') {
-steps {
-sudo docker build -f Dockerfile -t docker-spring-boot .  
-}
-}
+    docker.withRegistry('https://registry.hub.docker.com', 'dockerHub') {
+
+        def customImage = docker.build("my-image:${souad95/docker-spring-boot}")
+
+        /* Push the container to the custom Registry */
+        customImage.push()
+    }
 }
